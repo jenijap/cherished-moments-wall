@@ -3,11 +3,15 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
-}
+// Create a null client if env vars are missing - this prevents the app from crashing
+export const supabase = (supabaseUrl && supabaseAnonKey) 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Helper to check if connection is available
+export const isSupabaseConnected = () => {
+  return !!(supabaseUrl && supabaseAnonKey && supabase);
+};
 
 // Database types
 export interface Memory {
@@ -49,6 +53,10 @@ const compressImage = (file: File, quality: number = 0.8): Promise<File> => {
 
 // Upload photo to Supabase Storage
 export const uploadPhoto = async (file: File): Promise<string> => {
+  if (!supabase) {
+    throw new Error('Supabase not connected. Please set up your Supabase integration.');
+  }
+  
   try {
     // Compress the image first
     const compressedFile = await compressImage(file);
@@ -83,6 +91,10 @@ export const createMemory = async (
   caption: string,
   location?: string
 ): Promise<Memory> => {
+  if (!supabase) {
+    throw new Error('Supabase not connected. Please set up your Supabase integration.');
+  }
+  
   const { data, error } = await supabase
     .from('memories')
     .insert([{
@@ -102,6 +114,10 @@ export const createMemory = async (
 
 // Get all memories
 export const getMemories = async (): Promise<Memory[]> => {
+  if (!supabase) {
+    throw new Error('Supabase not connected. Please set up your Supabase integration.');
+  }
+  
   const { data, error } = await supabase
     .from('memories')
     .select('*')
@@ -116,6 +132,10 @@ export const getMemories = async (): Promise<Memory[]> => {
 
 // Delete memory
 export const deleteMemory = async (id: string): Promise<void> => {
+  if (!supabase) {
+    throw new Error('Supabase not connected. Please set up your Supabase integration.');
+  }
+  
   const { error } = await supabase
     .from('memories')
     .delete()

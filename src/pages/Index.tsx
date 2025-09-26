@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { MemoryPost } from "@/components/MemoryPost";
 import { AddMemoryModal } from "@/components/AddMemoryModal";
 import { DatabaseSetup } from "@/components/DatabaseSetup";
+import { SupabaseConnection } from "@/components/SupabaseConnection";
 import { useToast } from "@/hooks/use-toast";
-import { getMemories, createMemory, deleteMemory, uploadPhoto, type Memory } from "@/lib/supabase";
+import { getMemories, createMemory, deleteMemory, uploadPhoto, type Memory, isSupabaseConnected } from "@/lib/supabase";
 import { Heart, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-scrapbook.jpg";
 
@@ -83,7 +84,8 @@ const Index = () => {
 
   return (
     <>
-      <DatabaseSetup />
+      <SupabaseConnection />
+      {isSupabaseConnected() && <DatabaseSetup />}
       <div className="min-h-screen vintage-paper">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
