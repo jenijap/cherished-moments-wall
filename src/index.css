@@ -2,41 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Memory Album Design System - Warm & Romantic Scrapbook Theme
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Warm cream and vintage backgrounds */
+    --background: 45 40% 97%;
+    --foreground: 25 15% 25%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Soft vintage card styling */
+    --card: 42 35% 95%;
+    --card-foreground: 25 15% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Popover styling */
+    --popover: 42 35% 95%;
+    --popover-foreground: 25 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Romantic rose primary */
+    --primary: 345 65% 70%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Soft blush secondary */
+    --secondary: 340 25% 90%;
+    --secondary-foreground: 25 15% 35%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted vintage tones */
+    --muted: 40 20% 88%;
+    --muted-foreground: 25 10% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Warm accent */
+    --accent: 35 45% 85%;
+    --accent-foreground: 25 15% 35%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Soft destructive */
+    --destructive: 0 70% 65%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Subtle borders */
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 345 65% 70%;
 
     --radius: 0.5rem;
+
+    /* Custom scrapbook design tokens */
+    --vintage-paper: 42 30% 92%;
+    --polaroid-border: 0 0% 95%;
+    --tape-color: 48 25% 88%;
+    --shadow-soft: 0 4px 20px hsla(25, 15%, 25%, 0.1);
+    --shadow-photo: 0 8px 30px hsla(25, 15%, 25%, 0.15);
+    
+    /* Beautiful gradients */
+    --gradient-warm: linear-gradient(135deg, hsl(42, 35%, 95%), hsl(40, 25%, 92%));
+    --gradient-romantic: linear-gradient(135deg, hsl(345, 65%, 70%), hsl(340, 60%, 75%));
+    --gradient-vintage: linear-gradient(180deg, hsl(45, 40%, 97%), hsl(42, 35%, 95%));
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +126,33 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', 'Dancing Script', cursive, system-ui, sans-serif;
+  }
+  
+  /* Scrapbook-style utility classes */
+  .polaroid-shadow {
+    box-shadow: var(--shadow-photo);
+  }
+  
+  .vintage-paper {
+    background: var(--gradient-vintage);
+  }
+  
+  .scrapbook-card {
+    background: var(--gradient-warm);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .romantic-gradient {
+    background: var(--gradient-romantic);
+  }
+  
+  .smooth-transition {
+    transition: var(--transition-smooth);
+  }
+  
+  .bounce-transition {
+    transition: var(--transition-bounce);
   }
 }

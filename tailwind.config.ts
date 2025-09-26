@@ -57,11 +57,21 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom scrapbook colors
+        vintage: {
+          paper: "hsl(var(--vintage-paper))",
+          border: "hsl(var(--polaroid-border))",
+          tape: "hsl(var(--tape-color))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        'handwriting': ['Dancing Script', 'cursive'],
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {
@@ -80,10 +90,30 @@ export default {
             height: "0",
           },
         },
+        "float": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
+        },
+        "polaroid-drop": {
+          "0%": {
+            transform: "translateY(-20px) rotate(-5deg)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0px) rotate(0deg)",
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "polaroid-drop": "polaroid-drop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
       },
     },
   },
